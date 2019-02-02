@@ -11,18 +11,40 @@
     </div>
     <grid>
       <grid-item>
-        <x-input title="一等奖" v-model="level1" :required="true" :show-clear="true" type="number"></x-input>
+        <x-input
+          title="一等奖"
+          v-model="level1"
+          :required="true"
+          :show-clear="true"
+          type="number"
+        ></x-input>
       </grid-item>
       <grid-item>
-        <x-input title="二等奖" v-model="level2" :required="true" :show-clear="true" type="number"></x-input>
+        <x-input
+          title="二等奖"
+          v-model="level2"
+          :required="true"
+          :show-clear="true"
+          type="number"
+        ></x-input>
       </grid-item>
       <grid-item>
-        <x-input title="三等奖" v-model="level3" :required="true" :show-clear="true" type="number"></x-input>
+        <x-input
+          title="三等奖"
+          v-model="level3"
+          :required="true"
+          :show-clear="true"
+          type="number"
+        ></x-input>
       </grid-item>
     </grid>
     <div class="lucker">
       <h3>中奖名单</h3>
-      <x-table :cell-bordered="false" :content-bordered="true" style="background-color:#fff;">
+      <x-table
+        :cell-bordered="false"
+        :content-bordered="true"
+        style="background-color:#fff;"
+      >
         <thead>
           <tr style="background-color: #F7F7F7">
             <th>序号</th>
@@ -37,7 +59,10 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(item,i) in luckers" :key="item.i">
+          <tr
+            v-for="(item,i) in luckers"
+            :key="item.i"
+          >
             <td>{{i+1}}</td>
             <td>{{item.user}}</td>
             <td>{{item.mobile}}</td>
@@ -52,11 +77,18 @@
       </x-table>
     </div>
     <div class="submit">
-      <x-button @click.native="doLottery" type="primary" :disabled="luckyList.length==0">开始抽奖</x-button>
-      <x-button @click.native="exportData" :disabled="luckyList.length==0">导出数据</x-button>
+      <x-button
+        @click.native="doLottery"
+        type="primary"
+        :disabled="luckyList.length==0"
+      >开始抽奖</x-button>
+      <x-button
+        @click.native="exportData"
+        :disabled="luckyList.length==0"
+      >导出数据</x-button>
     </div>
 
-    <x-footer/>
+    <x-footer />
   </div>
 </template>
 
@@ -75,7 +107,7 @@ import {
 
 import util from "../js/common";
 import XFooter from "./Footer";
-import Excel from "../js/excel";
+// import Excel from "../js/excel";
 
 export default {
   components: {
@@ -101,32 +133,32 @@ export default {
   },
   methods: {
     exportData() {
-      let xlsx = new Excel({
-        filename: "幸运用户列表",
-        header: [
-          "序号",
-          "姓名",
-          "电话",
-          "省",
-          "市",
-          "区",
-          "详细地址",
-          "投票时间",
-          "奖品"
-        ],
-        body: this.luckers.map((item, i) => [
-          i + 1,
-          item.user,
-          item.mobile,
-          item.prov,
-          item.city,
-          item.area,
-          item.detail,
-          item.rec_date,
-          item.level
-        ])
-      });
-      xlsx.save();
+      // let xlsx = new Excel({
+      //   filename: "幸运用户列表",
+      //   header: [
+      //     "序号",
+      //     "姓名",
+      //     "电话",
+      //     "省",
+      //     "市",
+      //     "区",
+      //     "详细地址",
+      //     "投票时间",
+      //     "奖品"
+      //   ],
+      //   body: this.luckers.map((item, i) => [
+      //     i + 1,
+      //     item.user,
+      //     item.mobile,
+      //     item.prov,
+      //     item.city,
+      //     item.area,
+      //     item.detail,
+      //     item.rec_date,
+      //     item.level
+      //   ])
+      // });
+      // xlsx.save();
     },
     doLottery() {
       let arr = util.randomArr(this.luckyList);

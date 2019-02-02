@@ -10,7 +10,7 @@
       <p
         class="desc"
         v-if="isAdmin"
-      >投票情况: {{luckers}} 人选对{{sport.maxTickets}}项</p>
+      >投票情况: {{luckers}} 人投票结果与前{{sport.maxTickets}}项排名一致</p>
       <p class="desc"> 你所投的{{voteNum.length}}位{{sport.name}}截止目前总票数如下 </p>
       <group>
         <cell

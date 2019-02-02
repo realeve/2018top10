@@ -107,7 +107,6 @@ import {
   XButton,
   Swiper,
   Selector
-  // XAddress,
 } from "vux";
 import XFooter from "./Footer";
 import XHeader from "./Header";
@@ -116,7 +115,7 @@ import util from "../js/common";
 import { mapState } from "vuex";
 import * as db from "../js/db";
 
-import moment from "moment";
+import moment from "dayjs";
 import companyList from "../js/companyList";
 
 export default {
@@ -233,9 +232,8 @@ export default {
           arr.push(i);
         }
       });
-      let addStr = arr
-        .map(item => this.getOriginIdx(item))
-        .sort((a, b) => a - b);
+      let addStr = arr.map(item => this.getOriginIdx(item));
+      // .sort((a, b) => a - b); // 不做排序
       let params = {
         nickname: this.userInfo.nickname,
         openid: this.userInfo.openid,
@@ -309,14 +307,6 @@ export default {
   }
 }
 
-.desc {
-  padding: 0 10px;
-  font-size: 16px;
-  line-height: 1.6em;
-  text-indent: 2.3em;
-  letter-spacing: 0.15em;
-  text-align: justify;
-}
 .split {
   position: relative;
   background: #fff;
@@ -351,19 +341,36 @@ export default {
     .main-title {
       position: absolute;
       bottom: 5px;
-      background-image: linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, 0) 0,
-        rgba(0, 0, 0, 0.1) 15%,
-        rgba(0, 0, 0, 0.8) 100%
-      );
+      // background-image: linear-gradient(
+      //   to bottom,
+      //   rgba(0, 0, 0, 0) 0,
+      //   rgba(0, 0, 0, 0.1) 15%,
+      //   rgba(0, 0, 0, 0.8) 100%
+      // );
+
+      background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.8));
+
+      // background-color: rgba(0, 0, 0, 0.7);
       color: #fff;
+
+      // background-color: rgba(255, 255, 255, 0.8);
+      // font-weight: bold;
       text-align: justify;
       padding: 5px;
       width: 100%;
       line-height: 1.3em;
+      font-size: 1.1em;
     }
   }
+}
+
+.desc {
+  padding: 0 10px;
+  font-size: 16px;
+  line-height: 1.9em;
+  text-indent: 2.3em;
+  letter-spacing: 0.15em;
+  text-align: justify;
 }
 
 .submit {
