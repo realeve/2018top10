@@ -11,7 +11,7 @@
 <script>
 import { Loading } from "vux";
 
-import { querystring } from "vux";
+// import { querystring } from "vux";
 
 import qs from "qs";
 import wx from "weixin-js-sdk";
@@ -210,7 +210,7 @@ export default {
         window.location.href = this.redirectUrl;
         return true;
       }
-      let params = querystring.parse(hrefArr[1]);
+      let params = qs.parse(hrefArr[1]);
       this.code = params.code;
       return false;
     },

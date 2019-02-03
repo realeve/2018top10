@@ -10,8 +10,8 @@ import store from './store';
 // import VueResource from 'vue-resource';
 // Vue.use(VueResource);
 
-import { WechatPlugin, ToastPlugin } from 'vux';
-Vue.use(WechatPlugin);
+import { ToastPlugin } from 'vux';
+// Vue.use(WechatPlugin);
 
 Vue.use(ToastPlugin);
 

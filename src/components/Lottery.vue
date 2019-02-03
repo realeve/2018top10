@@ -107,7 +107,7 @@ import {
 
 import util from "../js/common";
 import XFooter from "./Footer";
-// import Excel from "../js/excel";
+import Excel from "../js/excel";
 
 export default {
   components: {
@@ -133,32 +133,32 @@ export default {
   },
   methods: {
     exportData() {
-      // let xlsx = new Excel({
-      //   filename: "幸运用户列表",
-      //   header: [
-      //     "序号",
-      //     "姓名",
-      //     "电话",
-      //     "省",
-      //     "市",
-      //     "区",
-      //     "详细地址",
-      //     "投票时间",
-      //     "奖品"
-      //   ],
-      //   body: this.luckers.map((item, i) => [
-      //     i + 1,
-      //     item.user,
-      //     item.mobile,
-      //     item.prov,
-      //     item.city,
-      //     item.area,
-      //     item.detail,
-      //     item.rec_date,
-      //     item.level
-      //   ])
-      // });
-      // xlsx.save();
+      let xlsx = new Excel({
+        filename: "幸运用户列表",
+        header: [
+          "序号",
+          "姓名",
+          "电话",
+          "省",
+          "市",
+          "区",
+          "详细地址",
+          "投票时间",
+          "奖品"
+        ],
+        body: this.luckers.map((item, i) => [
+          i + 1,
+          item.user,
+          item.mobile,
+          item.prov,
+          item.city,
+          item.area,
+          item.detail,
+          item.rec_date,
+          item.level
+        ])
+      });
+      xlsx.save();
     },
     doLottery() {
       let arr = util.randomArr(this.luckyList);

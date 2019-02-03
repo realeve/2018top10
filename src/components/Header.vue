@@ -2,7 +2,7 @@
   <div class="header">
     <img
       class="logo"
-      src="../assets/header2.jpg"
+      :src="`./static/img/header.${webp?'webp':'jpg'}`"
     >
     <div class="title">
       <h3>中国印钞造币总公司2018年度<br>“十件大事”候选事项
@@ -11,7 +11,15 @@
     </div>
   </div>
 </template>
-
+<script>
+export default {
+  data() {
+    return {
+      webp: window.__WEBP
+    };
+  }
+};
+</script>
 <style scoped lang="less">
 .header {
   text-align: center;

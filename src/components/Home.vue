@@ -9,14 +9,13 @@
       <p>
         请先选择您所属单位
       </p>
-      <group style="margin-top:-10px;">
+      <div class="weui-cells vux-no-group-title">
         <selector
           title="下属企业"
           :options="companyList"
           v-model="company_name"
         ></selector>
-
-      </group>
+      </div>
     </div>
     <div v-show="company_name.length">
       <div
@@ -97,17 +96,7 @@
 </template>
 
 <script>
-import {
-  Sticky,
-  Group,
-  Cell,
-  Card,
-  Divider,
-  Toast,
-  XButton,
-  Swiper,
-  Selector
-} from "vux";
+import { Toast, XButton, Swiper, Selector } from "vux";
 import XFooter from "./Footer";
 import XHeader from "./Header";
 import _checkList from "../js/checkList";
@@ -120,18 +109,12 @@ import companyList from "../js/companyList";
 
 export default {
   components: {
-    Sticky,
-    Group,
-    Cell,
-    Divider,
-    Card,
     Toast,
     XButton,
     XHeader,
     XFooter,
     Swiper,
     Selector
-    // XAddress,
   },
   data() {
     return {

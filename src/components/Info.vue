@@ -80,21 +80,16 @@
 <script>
 import {
   Msg,
-  Divider,
+  Group,
   Toast,
   XTextarea,
   XAddress,
-  // ChinaAddressV4Data,
   XButton,
-  Group,
-  Cell,
   XInput,
-  PopupPicker,
-  Picker,
   Value2nameFilter as value2name
 } from "vux";
 
-import ChinaAddressV4Data from "./vux_china_address_v4.json";
+import ChinaAddressV4Data from "./vux_china_address_v4";
 
 import XHeader from "./Header";
 import util from "../js/common";
@@ -103,19 +98,15 @@ import * as db from "../js/db";
 
 export default {
   components: {
-    Cell,
     Toast,
     XButton,
     Group,
     XAddress,
     XTextarea,
     XInput,
-    PopupPicker,
-    Picker,
     XHeader,
     XFooter,
-    Msg,
-    Divider
+    Msg
   },
   data() {
     return {
