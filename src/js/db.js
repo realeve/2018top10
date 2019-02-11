@@ -56,6 +56,16 @@ export const addCbpmVoteUserAddress = (params) =>
     url: '/147/8b8ca5e95a.json',
     params
   });
+  
+/**
+*   @database: { 微信开发 }
+*   @desc:     { 更新地址信息 } 
+    const { user, mobile, prov, city, area, detail, openid } = params;
+*/
+export const setCbpmVoteUserAddress = params => axios({
+  url: '/154/be12969005.json',
+  params,
+});
 
 /**
  *   @database: { 微信开发 }

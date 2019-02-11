@@ -1,7 +1,7 @@
 <template>
   <div>
     <x-header></x-header>
-    <template v-if="!hasUserInfo">
+    <template v-if="submitted || !hasUserInfo">
       <div class="content">
         <p class="info">个人信息</p>
         <p class="desc">本页面并非必填信息，仅用于活动结束抽奖时邮寄奖品，同时我们承诺不会将该信息用于其它用途，如不完整填写详细联系方式视为自动放弃抽奖资格。</p>
@@ -61,6 +61,7 @@
         v-show="!hasUserInfo"
         @click.native="submit"
         type="primary"
+        :disabled="submitting"
       >提交数据</x-button>
       <x-button
         v-show="showError"
@@ -127,7 +128,9 @@ export default {
         title: "个人信息提交成功",
         desc: "感谢你的参与",
         icon: "success"
-      }
+      },
+      submitting: false,
+      submitted: false
     };
   },
   computed: {
@@ -151,6 +154,7 @@ export default {
       window.location.href = "http://mp.weixin.qq.com/s/vFPSwUi1RxD1FJJqTzK93w";
     },
     async submit() {
+      this.submitting = true;
       let address = this.getName(this.address).split(" ");
       let params = {
         user: this.user,
@@ -162,7 +166,11 @@ export default {
         openid: this.openid
       };
 
-      let res = await db.addCbpmVoteUserAddress(params).catch(e => {
+      let method = this.submitted
+        ? "setCbpmVoteUserAddress"
+        : "addCbpmVoteUserAddress";
+
+      let res = await db[method](params).catch(e => {
         this.hasUserInfo = true;
         this.msg.title = "糟糕了，信息提交失败";
         this.msg.icon = "warn";
@@ -174,9 +182,18 @@ export default {
         this.msg.desc =
           '请复制以下信息并<a href="http://mp.weixin.qq.com/s/vFPSwUi1RxD1FJJqTzK93w">点击此处提交至后台小编</a>：<br><br>' +
           JSON.stringify(params);
+        return {
+          data: [
+            {
+              affected_rows: 0
+            }
+          ]
+        };
       });
 
-      if (res.data[0].affected_rows == 0) {
+      this.submitting = false;
+
+      if (res.data[0].affected_rows == 0 && !this.submitted) {
         this.showToast({
           text: "数据失败",
           type: "warn"
@@ -191,14 +208,14 @@ export default {
       this.msg.title = "个人信息提交成功";
       this.msg.desc = "感谢你的参与";
       this.msg.icon = "success";
-
-      this.hasUserInfo = true;
+      this.submitted = true;
     },
     async getStep() {
       let { data, rows } = await db.getCbpmVoteUserAddress(this.openid);
       if (rows == 0) {
         return;
       }
+      this.submitted = true;
       let userInfo = data[0];
       this.user = userInfo.user;
       this.mobile = userInfo.mobile;

@@ -11,7 +11,7 @@
       </p>
       <div class="weui-cells vux-no-group-title">
         <selector
-          title="下属企业"
+          title="所在单位"
           :options="companyList"
           v-model="company_name"
         ></selector>
@@ -79,7 +79,7 @@
 
       <div class="submit">
         <x-button
-          :disabled="maxnum!=sport.maxTickets"
+          :disabled="submitting || maxnum!=sport.maxTickets"
           @click.native="submit"
           type="primary"
         >提交数据</x-button>
@@ -129,7 +129,8 @@ export default {
       time: new Date().getTime(),
       ip: "",
       companyList,
-      company_name: ""
+      company_name: "",
+      submitting: false
     };
   },
   computed: {
@@ -209,6 +210,8 @@ export default {
       return this.checkList[newIdx].id;
     },
     async submit() {
+      this.submitting = true;
+      // submitting == true 时，按钮状态为disabled
       let arr = [];
       this.valueList.forEach((item, i) => {
         if (item) {
@@ -236,13 +239,15 @@ export default {
 
       let { affected_rows } = res.data[0];
 
-      if (affected_rows == 0) {
+      if (affected_rows == -1) {
+        this.submitting = false;
         this.showToast({
           text: "数据提交失败",
           type: "warn"
         });
         return;
       } else if (affected_rows == 1) {
+        // 后台成功时，更新票数。
         await db.setCbpmVoteList(addStr);
       }
       this.showToast({
@@ -251,6 +256,8 @@ export default {
       });
 
       setTimeout(() => {
+        // 投票完成
+        this.submitting = false;
         this.$router.push("/info");
       }, 500);
     },

@@ -11,6 +11,25 @@
       <p class="desc">
         2月底我们将组织印钞造币行业内部专家投票，并以专家投票结果作为十件大事确认事项。参与者选出的十件大事与最终结果完全一致即可参加抽奖活动，中奖名单奖将通过“中国印钞造币”微信公众号公布。
       </p>
+      <p
+        class="desc"
+        style="text-indent:0;"
+      >活动规则</p>
+      <p class="desc">
+        （一）每个微信号参与者限投一次，一次限选10件候选大事，投票后填写详细联系方式（如填写信息不完整，视为自动放弃获奖资格）。
+      </p>
+      <p class="desc">
+        （二）为感谢大家的积极参与，本次活动将根据参与者投票的命中率进行抽奖（共设一、二、三等奖）：
+      </p>
+      <p class="desc">
+        1、2月底我们将组织印钞造币行业内部专家投票，并以专家投票结果作为十件大事确认事项。参与者选出的十件大事与最终结果完全一致即可参加抽奖活动，由中国印钞造币总公司组织抽奖，从满足条件的参与者中抽取600名一、二、三等奖中奖者。
+      </p>
+      <p class="desc">
+        2、如与“十件大事”的最终评选结果完全重合的投票人数不足600名，则按评选命中率从高到低依次选足抽奖人员。
+      </p>
+      <p class="desc">
+        3、参与抽奖人员只与投票准确率有关，与投票先后无关。
+      </p>
       <div class="margin-top-20 time">
         活动时间：{{year}}年{{sport.timeRange}}
       </div>
@@ -36,6 +55,8 @@ import particlesSetting from "../js/particlesSetting";
 import XFooter from "./Footer";
 import { XButton, Toast } from "vux";
 import { mapState } from "vuex";
+import * as db from "../js/db";
+import moment from "dayjs";
 
 export default {
   components: {
@@ -52,7 +73,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["cdnUrl"]),
+    ...mapState(["cdnUrl", "userInfo"]),
     year() {
       let date = new Date();
       return date.getFullYear();
@@ -64,6 +85,17 @@ export default {
       set(val) {
         this.$store.commit("setSport", val);
       }
+    },
+    isSportEnd() {
+      return moment().format("YYYY-MM-DD HH:mm:ss") > this.sport.endDate;
+    }
+  },
+  watch: {
+    "userInfo.openid"(val) {
+      if (!val) {
+        return;
+      }
+      this.getStep();
     }
   },
   methods: {
@@ -72,11 +104,27 @@ export default {
       // video.play();
       // video.pause();
       this.$router.push(router);
+    },
+    async getStep() {
+      if (this.isSportEnd) {
+        this.$router.push("message");
+        return;
+      }
+      if (!this.userInfo.openid) {
+        return;
+      }
+
+      let { rows } = await db.getCbpmVoteMain(this.userInfo.openid);
+      if (rows > 0) {
+        this.$router.push("/info");
+        return;
+      }
     }
   },
   mounted() {
     particlesJS("home", particlesSetting);
     document.title = this.sport.name;
+    this.getStep();
   }
 };
 </script>
