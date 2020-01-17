@@ -83,10 +83,10 @@
           @click.native="submit"
           type="primary"
         >提交数据</x-button>
-        <x-button
+        <!-- <x-button
           @click.native="addInfo"
           type="default"
-        >填写个人信息</x-button>
+        >填写个人信息</x-button> -->
       </div>
     </div>
 
@@ -268,6 +268,7 @@ export default {
       }
 
       let { rows, ip } = await db.getCbpmVoteMain(this.openid);
+      // console.log(rows)
       if (rows > 0) {
         this.$router.push("/info");
         return;
