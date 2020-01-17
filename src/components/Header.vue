@@ -1,11 +1,10 @@
 <template>
   <div class="header">
-    <img
-      class="logo"
-      :src="`./static/img/header.${webp?'webp':'jpg'}`"
-    >
+    <img class="logo" :src="`./static/img/header.${webp?'webp':'jpg'}`" />
     <div class="title">
-      <h3>中国印钞造币总公司2018年度<br>“十件大事”候选事项
+      <h3>
+        中国印钞造币总公司2019年度
+        <br />“十件大事”候选事项
       </h3>
       <h4 class="subtitle">（排名不分先后）</h4>
     </div>

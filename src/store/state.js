@@ -11,20 +11,20 @@ let isMobile = () =>
 const state = {
   isLoading: false,
   userInfo: {},
-  cdnUrl: '//api.cbpc.ltd/',
-  tips: '',
-  isDebug: process.env.NODE_ENV !== 'production',
+  cdnUrl: "//api.cbpc.ltd/",
+  tips: "",
+  isDebug: process.env.NODE_ENV !== "production",
   isPC: !isMobile(),
   sport: {
     id: 1,
     isLogin: true,
-    name: '2018年中国印钞造币行业"十件大事"',
+    name: '2019年中国印钞造币行业"十件大事"',
     maxTickets: 10,
     allTickets: 15,
-    timeRange: '2月11日至17日',
+    timeRange: "1月17日至25日",
     loadWXInfo: true,
-    startDate: '2019-02-11 00:00:00',
-    endDate: '2019-02-17 23:59:59'
+    startDate: "2020-01-17 00:00:00",
+    endDate: "2020-01-25 23:59:59"
   }
 };
 
