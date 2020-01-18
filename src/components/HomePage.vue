@@ -53,7 +53,8 @@ export default {
       toast: {
         show: false,
         msg: ""
-      }
+      },
+      isVoted:false
     };
   },
   computed: {
@@ -84,10 +85,10 @@ export default {
   },
   methods: {
     jump(router) {
-      var video = document.querySelector("#mainvideo");
+      // var video = document.querySelector("#mainvideo");
       // video.play();
       // video.pause();
-      this.$router.push(router);
+      this.$router.push(this.isVoted?"/score":router);
     },
     async getStep() {
       if (this.isSportEnd) {
@@ -100,7 +101,7 @@ export default {
 
       let { rows } = await db.getCbpmVoteMain(this.userInfo.openid);
       if (rows > 0) {
-        this.$router.push("/score");
+        this.isVoted = true; 
         return;
       }
     }
