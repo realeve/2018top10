@@ -2,19 +2,11 @@
   <div>
     <x-header></x-header>
     <div class="score-content">
-      <p class="info"> 票数汇总 </p>
-      <p
-        class="desc"
-        v-if="isAdmin"
-      >信息填写: {{countInfo.address}} / {{countInfo.alls}}</p>
-      <p
-        class="desc"
-        v-if="isAdmin"
-      >投票情况: {{luckers}} 人投票结果与前{{sport.maxTickets}}项排名一致</p>
-      <p
-        class="desc"
-        v-else
-      > 你所投的{{voteNum.length}}项{{sport.name}}截止目前总票数如下 </p>
+      <p class="info">票数汇总</p>
+      <p class="desc">参与人数: {{countInfo.alls}}</p>
+      <!-- {{countInfo.address}} /  v-if="isAdmin" -->
+      <!-- <p class="desc" v-if="isAdmin">投票情况: {{luckers}} 人投票结果与前{{sport.maxTickets}}项排名一致</p> -->
+      <!-- <p class="desc" v-else>你所投的{{voteNum.length}}项{{sport.name}}截止目前总票数如下</p> -->
       <group>
         <cell
           v-for="(user,i) in voteNum"
@@ -25,7 +17,7 @@
       </group>
     </div>
 
-    <p class="info"> 各单位票数汇总 </p>
+    <p class="info">各单位票数汇总</p>
     <group style="margin-bottom:20px;">
       <cell
         v-for="(item,i) in companyInfo"
@@ -43,12 +35,9 @@
         :value="item.num+' 票'"
         :key="i"
       ></cell>
-    </group> -->
+    </group>-->
     <div style="margin:0 20px 20px 20px;">
-      <x-button
-        @click.native="init"
-        type="primary"
-      >刷新数据</x-button>
+      <x-button @click.native="init" type="primary">刷新数据</x-button>
     </div>
     <x-footer />
   </div>
@@ -90,15 +79,16 @@ export default {
       return this.userInfo.openid;
     },
     isAdmin() {
-      return (
-        [
-          "oW0w1v4qftC8xUP3q-MPIHtXB7hI",
-          "oW0w1v28ykr6042MA2XnccUlMsVg",
-          "oW0w1vxG2WkLPHu6d1tgZVQ_SyC8"
-        ]
-          .join(" ")
-          .indexOf(this.openid) > -1
-      );
+      return true;
+      // return (
+      //   [
+      //     "oW0w1v4qftC8xUP3q-MPIHtXB7hI",
+      //     "oW0w1v28ykr6042MA2XnccUlMsVg",
+      //     "oW0w1vxG2WkLPHu6d1tgZVQ_SyC8"
+      //   ]
+      //     .join(" ")
+      //     .indexOf(this.openid) > -1
+      // );
     }
   },
   methods: {
@@ -154,7 +144,7 @@ export default {
 <style lang="less" scoped>
 .score-content {
   padding: 15px;
-  padding-top: 10px;
+  padding-top: 0px;
   .info {
     font-size: 20px;
     font-weight: bold;
@@ -165,9 +155,6 @@ export default {
     padding-top: 5px;
     color: #636563;
     font-size: 16px;
-    text-align: left;
-  }
-  .vux-label {
     text-align: left;
   }
 }
