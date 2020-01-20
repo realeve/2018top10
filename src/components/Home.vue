@@ -1,33 +1,17 @@
 <template>
   <div style="background:#f2f3f8">
     <x-header></x-header>
-    <toast
-      v-model="toast.show"
-      :type="toast.type"
-    >{{ toast.text }}</toast>
+    <toast v-model="toast.show" :type="toast.type">{{ toast.text }}</toast>
     <div class="company_name">
-      <p>
-        请先选择您所属单位
-      </p>
+      <p>请先选择您所属单位</p>
       <div class="weui-cells vux-no-group-title">
-        <selector
-          title="所在单位"
-          :options="companyList"
-          v-model="company_name"
-        ></selector>
+        <selector title="所在单位" :options="companyList" v-model="company_name"></selector>
       </div>
     </div>
     <div v-show="company_name.length">
-      <div
-        class="vote"
-        v-for="(item,i) in checkList"
-        :key="item.id"
-      >
+      <div class="vote" v-for="(item,i) in checkList" :key="item.id">
         <div class="header">
-          <img
-            v-if="item.img.length==1"
-            :src="item.img[0].img"
-          >
+          <img v-if="item.img.length==1" :src="item.img[0].img" />
           <swiper
             v-else
             loop
@@ -54,23 +38,16 @@
             class="weui-switch"
             v-model="valueList[i]"
             @on-change="checkMaxVotes(i)"
-          >
+          />
         </div>
         <div class="split">
           <div class="shadow"></div>
         </div>
       </div>
 
-      <p
-        style="margin-top:20px;"
-        v-show="myChecked.length"
-      >我的选择</p>
+      <p style="margin-top:20px;" v-show="myChecked.length">我的选择</p>
       <div class="weui-cells weui-cells_checkbox">
-        <label
-          class="weui-cell weui-check_label"
-          v-for="(item,i) in myChecked"
-          :key="item.id"
-        >
+        <label class="weui-cell weui-check_label" v-for="(item,i) in myChecked" :key="item.id">
           <div class="weui-cell__bd">
             <p>{{i+1}}.{{item.title}}</p>
           </div>
@@ -86,13 +63,12 @@
         <!-- <x-button
           @click.native="addInfo"
           type="default"
-        >填写个人信息</x-button> -->
+        >填写个人信息</x-button>-->
       </div>
     </div>
 
     <x-footer />
   </div>
-
 </template>
 
 <script>
@@ -258,7 +234,7 @@ export default {
       setTimeout(() => {
         // 投票完成
         this.submitting = false;
-        this.$router.push("/info");
+        this.$router.push("/score");
       }, 500);
     },
     async getStep() {
@@ -270,13 +246,13 @@ export default {
       let { rows, ip } = await db.getCbpmVoteMain(this.openid);
       // console.log(rows)
       if (rows > 0) {
-        this.$router.push("/info");
+        this.$router.push("/score");
         return;
       }
       this.ip = ip;
     },
     addInfo() {
-      this.$router.push("/info");
+      this.$router.push("/score");
     }
   },
   created() {
