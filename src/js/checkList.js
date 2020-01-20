@@ -17,9 +17,9 @@ export default [
       "中国人民银行党委2019年11月1日决定：撤销原中共中国印钞造币总公司董事会党组、撤销原中共中国印钞造币总公司委员会，成立新的中共中国印钞造币总公司委员会。总公司党委将带领全行业干部职工进一步深入学习习近平新时代中国特色社会主义思想，坚定“四个自信”、增强“四个意识”、做到“两个维护”，以只争朝夕、不负韶华的精神面貌迎接挑战，坚持严格管理，强化使命意识和责任担当，聚焦主责主业，更好地为央行履行职责服务。",
     id: 1,
     img: [
-      { url: "javascript:", img: `./static/img/02.${imgType}` },
-      { url: "javascript:", img: `./static/img/02-1.${imgType}` },
-      { url: "javascript:", img: `./static/img/02-2.${imgType}` }
+      // { url: "javascript:", img: `./static/img/02.${imgType}` },
+      { url: "javascript:", img: `./static/img/02-1.${imgType}` }
+      // { url: "javascript:", img: `./static/img/02-2.${imgType}` }
     ]
   },
   {
@@ -54,7 +54,7 @@ export default [
       "发挥全产业链优势，精准定位、周密筹划，成功中标尼泊尔20卢比钞票项目并再次中标1000卢比项目；“澳门回归祖国二十周年”钞票获2019年亚洲高级安全印务会议“亚洲最佳纪念钞”殊荣； Colortrace技术在第30届国际全息会议上荣获“全息技术创新推荐奖”；中国高铁普通纪念币获得国际货币事务联合会“最佳纪念币”提名……中国印钞造币在国际舞台上用产品和实力讲好中钞故事，中钞品牌影响力进一步提升。",
     id: 4,
     img: [
-      { url: "javascript:", img: `./static/img/05.${imgType}` },
+      // { url: "javascript:", img: `./static/img/05.${imgType}` },
       { url: "javascript:", img: `./static/img/05-2.${imgType}` }
     ]
   },
@@ -68,9 +68,10 @@ export default [
   {
     title: "加强战略合作，行业科技研究工作硕果累累",
     content:
-      "2019年，总公司分别与瑞士锡克拜公司、中央美术学院、中科院化学所、天津大学、华南理工大学等机构签订战略合作协议，开展技术合作与交流。“2012钞票纸的研制”获得银行科技发展奖一等奖并获得中国人民银行提名参与2020年国家科学技术进步奖评审；“2019年版第五套人民币50元、20元、10元、1元纸币研制”“中国高铁普通纪念币”等科技成果被总行评为国际先进水平；“跨境金融区块链服务平台”和“基于区块链技术的开放金融服务项目”成为获准入选金融科技应用试点名录中仅有的两个区块链项目。落实人民银行货币发行工作“市场导向、问题导向、民生导向”转型要求，完成我国首次居民现金支付日志调查。",
+      "2019年，总公司分别与瑞士锡克拜公司、中央美术学院、中科院化学所、天津大学、华南理工大学等机构签订战略合作协议，开展技术合作与交流。“2012钞票纸的研制”获得银行科技发展奖一等奖并获得中国人民银行提名参与2020年国家科学技术进步奖评审；“2019年版第五套人民币50元、20元、10元、1元纸币研制”等科技成果被总行认为达到国际先进水平；“跨境金融区块链服务平台”和“基于区块链技术的开放金融服务项目”成为获准入选金融科技应用试点名录中仅有的两个区块链项目。落实人民银行货币发行工作“市场导向、问题导向、民生导向”转型要求，完成我国首次居民现金支付日志调查。",
     id: 6,
-    img: [{ url: "javascript:", img: `./static/img/07.${imgType}` }]
+    img: []
+    // img: [{ url: "javascript:", img: `./static/img/07.${imgType}` }]
   },
   {
     title: "守正创新，传播中钞品牌，提升文化软实力",
@@ -79,10 +80,10 @@ export default [
     id: 7,
     img: [
       { url: "javascript:", img: `./static/img/08.${imgType}` },
-      { url: "javascript:", img: `./static/img/08-1.${imgType}` },
       { url: "javascript:", img: `./static/img/08-2.${imgType}` },
-      { url: "javascript:", img: `./static/img/08-4.${imgType}` },
-      { url: "javascript:", img: `./static/img/08-5.${imgType}` }
+      { url: "javascript:", img: `./static/img/08-3.${imgType}` },
+      { url: "javascript:", img: `./static/img/08-4.${imgType}` }
+      // { url: "javascript:", img: `./static/img/08-5.${imgType}` }
     ]
   },
   {
@@ -112,7 +113,7 @@ export default [
       "2019年12月底，行业数据中心顺利完成迁建工作，共计搬迁硬件设备近百台（套），迁移各类信息系统40余个。行业业务信息系统实现了由总公司到行业数据中心的无感迁移、平稳过渡；实现了总公司与数据中心之间，广域网大带宽高速线路互联互通，中心内部生产环境三级网络建设。",
     id: 11,
     img: [
-      { url: "javascript:", img: `./static/img/12.${imgType}` },
+      // { url: "javascript:", img: `./static/img/12.${imgType}` }
       { url: "javascript:", img: `./static/img/12-2.${imgType}` }
     ]
   }

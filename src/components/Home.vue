@@ -11,7 +11,8 @@
     <div v-show="company_name.length">
       <div class="vote" v-for="(item,i) in checkList" :key="item.id">
         <div class="header">
-          <img v-if="item.img.length==1" :src="item.img[0].img" />
+          <div v-if="item.img.length==0" class="empty-imgs" />
+          <img v-else-if="item.img.length==1" :src="item.img[0].img" />
           <swiper
             v-else
             loop
@@ -302,6 +303,9 @@ export default {
   background: #fff;
   .header {
     position: relative;
+    .empty-imgs {
+      margin-top: 3em;
+    }
     img {
       width: 100%;
     }
@@ -315,7 +319,7 @@ export default {
       //   rgba(0, 0, 0, 0.8) 100%
       // );
 
-      background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.8));
+      background: linear-gradient(180deg, transparent, rgba(166, 0, 0, 0.8));
 
       // background-color: rgba(0, 0, 0, 0.7);
       color: #fff;
@@ -327,6 +331,7 @@ export default {
       width: 100%;
       line-height: 1.3em;
       font-size: 1.1em;
+      font-weight: 550;
     }
   }
 }
