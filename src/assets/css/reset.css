@@ -212,3 +212,6 @@ body {
 .vux-cell-bd.vux-cell-primary .vux-label {
   text-align: left;
 }
+.vux-slider > .vux-swiper {
+  height: 220px !important;
+}

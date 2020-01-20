@@ -18,6 +18,7 @@ export default [
     id: 1,
     img: [
       { url: "javascript:", img: `./static/img/02.${imgType}` },
+      { url: "javascript:", img: `./static/img/02-1.${imgType}` },
       { url: "javascript:", img: `./static/img/02-2.${imgType}` }
     ]
   },
@@ -103,11 +104,7 @@ export default [
     content:
       "遵循“测试验证、分析反馈、优化完善”的良性动态循环模式，积极稳妥地助推多型号国产小张清分设备在行业印钞生产中勇挑重担。提升后的国产清分机为行业深入推进工艺改革、摆脱对进口清分机的依赖、降低成本做出突出贡献。",
     id: 10,
-    img: [
-      { url: "javascript:", img: `./static/img/11.${imgType}` },
-      { url: "javascript:", img: `./static/img/11-2.${imgType}` },
-      { url: "javascript:", img: `./static/img/11-3.${imgType}` }
-    ]
+    img: [{ url: "javascript:", img: `./static/img/11.${imgType}` }]
   },
   {
     title: "信息中心成功迁移并投入运行，行业信息化管理步入新阶段",
