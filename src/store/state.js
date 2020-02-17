@@ -21,10 +21,10 @@ const state = {
     name: '2019年中国印钞造币行业"十件大事"',
     maxTickets: 10,
     allTickets: 15,
-    timeRange: "1月17日至25日",
+    timeRange: "2月17日至28日",
     loadWXInfo: true,
-    startDate: "2020-01-17 00:00:00",
-    endDate: "2020-01-25 23:59:59"
+    startDate: "2020-02-17 00:00:00",
+    endDate: "2020-02-28 23:59:59"
   }
 };
 
