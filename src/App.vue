@@ -205,6 +205,10 @@ export default {
         return true;
       }
       let params = qs.parse(hrefArr[1]);
+      if (!params.code) {
+        window.location.href = this.redirectUrl;
+        return true;
+      }
       this.code = params.code;
       return false;
     },
