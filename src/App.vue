@@ -92,6 +92,7 @@ export default {
       }).then(data => {
         this.wxReady(data);
         this.initWxShare();
+        this.shouldShare = true;
       });
     },
     wxReady(obj) {
@@ -195,11 +196,7 @@ export default {
       if (this.sport.loadWXInfo && !this.needRedirect()) {
         this.getWXUserInfo();
       }
-      this.wxPermissionInit().then(res => {
-        this.shouldShare = true;
-        this.wxReady(res);
-        this.initWxShare();
-      });
+      this.wxPermissionInit();
     },
     needRedirect() {
       let hrefArr = window.location.href.split("?");
