@@ -15,8 +15,6 @@ import wx from "weixin-js-sdk";
 
 import { mapState, mapMutations } from "vuex";
 import { axios } from "./js/axios";
-// import VConsole from "vconsole";
-// var a = new VConsole();
 
 export default {
   name: "app",
@@ -54,7 +52,7 @@ export default {
     },
     // 签名用URL
     url() {
-      return window.location.origin + window.location.pathname;
+      return window.location.href.split("#")[0];
     },
     // 跳转URL
     redirectUrl() {
@@ -69,20 +67,20 @@ export default {
       // return window.location.href.split("#")[0].split("?")[0];
       let { origin, pathname } = window.location;
       return origin + pathname;
+    },
+    shouldInitShare() {
+      return this.sport.isLogin && this.shouldShare;
     }
-    // shouldInitShare() {
-    //   return this.sport.isLogin && this.shouldShare;
-    // }
   },
-  // watch: {
-  //   shouldInitShare(val) {
-  //     if (!val) {
-  //       return;
-  //     }
-  //     this.title = `我刚刚参加了${this.sport.name}投票活动，你也来参与吧`;
-  //     this.initWxShare();
-  //   }
-  // },
+  watch: {
+    shouldInitShare(val) {
+      if (!val) {
+        return;
+      }
+      this.title = `我刚刚参加了${this.sport.name}投票活动，你也来参与吧`;
+      this.initWxShare();
+    }
+  },
   methods: {
     ...mapMutations(["setStore"]),
     wxPermissionInit() {
@@ -94,7 +92,7 @@ export default {
       }).then(data => {
         this.wxReady(data);
         this.initWxShare();
-        // this.shouldShare = true;
+        this.shouldShare = true;
       });
     },
     wxReady(obj) {
@@ -105,23 +103,22 @@ export default {
         nonceStr: obj.nonceStr,
         signature: obj.signature,
         jsApiList: [
-          "updateAppMessageShareData",
-          "updateTimelineShareData"
+          "onMenuShareAppMessage",
+          "onMenuShareTimeline",
           // "onMenuShareQQ",
           // "onMenuShareWeibo",
           // "onMenuShareQZone",
-          // "hideMenuItems"
+          "hideMenuItems"
           // "getNetworkType"
         ]
       };
       wx.config(config);
     },
     initWxShare() {
-      // console.log(wx);
       wx.ready(() => {
         let option = {
           title: this.title, // 分享标题
-          desc: `我刚刚参加了${this.sport.name}投票活动，你也来参与吧`,
+          desc: this.title,
           link: this.shareUrl,
           imgUrl: "https://www.cbpc.ltd/public/cdn/cbpm.jpg",
           type: "",
@@ -129,25 +126,25 @@ export default {
           success: function() {},
           cancel: function() {}
         };
-        wx.updateAppMessageShareData(option);
-        wx.updateTimelineShareData(option);
+        wx.onMenuShareAppMessage(option);
+        wx.onMenuShareTimeline(option);
         // wx.onMenuShareQQ(option);
         // wx.onMenuShareWeibo(option);
         // wx.onMenuShareQZone(option);
 
         // 要隐藏的菜单项，只能隐藏“传播类”和“保护类”按钮，所有menu项见附录3
-        // wx.hideMenuItems({
-        //   menuList: [
-        //     "menuItem:editTag",
-        //     "menuItem:delete",
-        //     "menuItem:copyUrl",
-        //     "menuItem:originPage",
-        //     "menuItem:readMode",
-        //     "menuItem:openWithQQBrowser",
-        //     "menuItem:openWithSafari",
-        //     "menuItem:share:email"
-        //   ]
-        // });
+        wx.hideMenuItems({
+          menuList: [
+            "menuItem:editTag",
+            "menuItem:delete",
+            "menuItem:copyUrl",
+            "menuItem:originPage",
+            "menuItem:readMode",
+            "menuItem:openWithQQBrowser",
+            "menuItem:openWithSafari",
+            "menuItem:share:email"
+          ]
+        });
       });
     },
     // 获取微信用户信息（昵称，地区）
