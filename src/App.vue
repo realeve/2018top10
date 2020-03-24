@@ -15,6 +15,8 @@ import wx from "weixin-js-sdk";
 
 import { mapState, mapMutations } from "vuex";
 import { axios } from "./js/axios";
+// import VConsole from "vconsole";
+// var a = new VConsole();
 
 export default {
   name: "app",
@@ -103,8 +105,8 @@ export default {
         nonceStr: obj.nonceStr,
         signature: obj.signature,
         jsApiList: [
-          "onMenuShareAppMessage",
-          "onMenuShareTimeline"
+          "updateAppMessageShareData",
+          "updateTimelineShareData"
           // "onMenuShareQQ",
           // "onMenuShareWeibo",
           // "onMenuShareQZone",
@@ -115,6 +117,7 @@ export default {
       wx.config(config);
     },
     initWxShare() {
+      // console.log(wx);
       wx.ready(() => {
         let option = {
           title: this.title, // 分享标题
@@ -126,8 +129,8 @@ export default {
           success: function() {},
           cancel: function() {}
         };
-        wx.onMenuShareAppMessage(option);
-        wx.onMenuShareTimeline(option);
+        wx.updateAppMessageShareData(option);
+        wx.updateTimelineShareData(option);
         // wx.onMenuShareQQ(option);
         // wx.onMenuShareWeibo(option);
         // wx.onMenuShareQZone(option);
