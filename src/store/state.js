@@ -23,8 +23,8 @@ const state = {
     allTickets: 15,
     timeRange: "2月17日至28日",
     loadWXInfo: true,
-    startDate: "2020-02-17 00:00:00",
-    endDate: "2020-02-28 23:59:59"
+    startDate: "2020-03-25 08:00:00",
+    endDate: "2020-03-31 23:59:59"
   }
 };
 
