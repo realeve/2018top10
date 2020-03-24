@@ -1,9 +1,6 @@
 <template>
   <div id="app">
-    <loading
-      v-if="isLoading"
-      v-model="isLoading"
-    />
+    <loading v-if="isLoading" v-model="isLoading" />
     <router-view v-else />
   </div>
 </template>
@@ -87,7 +84,7 @@ export default {
   methods: {
     ...mapMutations(["setStore"]),
     wxPermissionInit() {
-      axios({
+      return axios({
         params: {
           s: "/weixin/signature",
           url: this.url
@@ -117,7 +114,7 @@ export default {
       wx.config(config);
     },
     initWxShare() {
-      this.$wechat.ready(() => {
+      wx.ready(() => {
         let option = {
           title: this.title, // 分享标题
           desc: this.title,
@@ -252,7 +249,7 @@ export default {
 
     // 正式环境微信载入
     this.wxInit();
-    this.wxPermissionInit();
+    // this.wxPermissionInit();
   }
 };
 </script>
