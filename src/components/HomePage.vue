@@ -5,16 +5,26 @@
         中国印钞造币总公司2019年度
         <br />“十件大事”评选活动
       </p>
+      <p class="subtitle">亲爱的朋友们：</p>
       <p
         class="desc"
+        &#x3C;&#x3C;&#x3C;&#x3C;&#x3C;&#x3C;&#x3C;
+        HEAD
       >刚刚过去的2019年，不忘初心、逐梦前行的祖国和人民都收获满满、幸福满满。肩负为国造币神圣使命的中钞人在总公司董事会、党委经理部的领导下，围绕“转型发展”这一核心使命，凝心聚力、砥砺前行，取得了靓丽的业绩！</p>
       <p
         class="desc"
       >为向大家全面展示2019年中国印钞造币行业的新发展、新成就、新气象，让大家更加了解中国印钞造币行业、支持中国印钞造币事业，今天小印请您当评委，邀您共同参与中国印钞造币行业2019年“十件大事”评选活动！请在12个选项中选出你认为的“十件大事”。</p>
       <!-- <p
+=======
+      >2020年新年伊始，新冠肺炎疫情来袭。面对疫情，中国印钞造币全行业积极响应国家号召，齐心协力、共克时艰；与此同时坚持不懈做好疫情防控及复工复产工作，让老百姓用上放心钱，筑起民生领域中一道坚实的防线。</p>
+      <p
         class="desc"
-      >2月底我们将组织印钞造币行业内部专家投票，并以专家投票结果作为十件大事确认事项。参与者选出的十件大事与最终结果完全一致即可参加抽奖活动，中奖名单奖将通过“中国印钞造币”微信公众号公布。</p>
-      <p class="desc" style="text-indent:0;">活动规则</p>
+      >感谢大家长期以来对中国印钞造币的支持。2019年，我们一起见证了2019年版第五套人民币等新产品的面世，见证了“中国名片——人民币发行70周年纪念展”的精彩收官，与我们一同庆祝新中国成立70周年，一同守着预约、兑换泰山币、建国币等各类纪念币……</p>
+      <p
+>>>>>>> remotes/origin/master
+        class="desc"
+      >新时代，新发展。在中国印钞造币总公司党委的领导下，我们总结出2019年行业大事共计12项。小印诚邀您共同参与到中国印钞造币行业2019年“十件大事“的评选活动中。请在12个选项中选出您认可的”十件大事“。</p>
+      <!-- <p class="desc" style="text-indent:0;">活动规则</p>
       <p class="desc">（一）每个微信号参与者限投一次，一次限选10件候选大事，投票后填写详细联系方式（如填写信息不完整，视为自动放弃获奖资格）。</p>
       <p class="desc">（二）为感谢大家的积极参与，本次活动将根据参与者投票的命中率进行抽奖（共设一、二、三等奖）：</p>
       <p
@@ -54,7 +64,11 @@ export default {
         show: false,
         msg: ""
       },
+<<<<<<< HEAD
       isVoted:false
+=======
+      isVoted: false
+>>>>>>> remotes/origin/master
     };
   },
   computed: {
@@ -88,7 +102,7 @@ export default {
       // var video = document.querySelector("#mainvideo");
       // video.play();
       // video.pause();
-      this.$router.push(this.isVoted?"/score":router);
+      this.$router.push(this.isVoted ? "/score" : router);
     },
     async getStep() {
       if (this.isSportEnd) {
@@ -101,7 +115,11 @@ export default {
 
       let { rows } = await db.getCbpmVoteMain(this.userInfo.openid);
       if (rows > 0) {
+<<<<<<< HEAD
         this.isVoted = true; 
+=======
+        this.isVoted = true;
+>>>>>>> remotes/origin/master
         return;
       }
     }
@@ -136,6 +154,12 @@ export default {
     font-size: 20pt;
     text-align: center;
     margin-top: 20px;
+  }
+  .subtitle {
+    text-indent: 0px;
+    padding-left: 15px;
+    padding-top: 15px;
+    width: 100%;
   }
   .desc {
     padding: 15px;
