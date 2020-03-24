@@ -52,7 +52,7 @@ export default {
     },
     // 签名用URL
     url() {
-      return window.location.href.split("#")[0];
+      return window.location.origin + window.location.pathname;
     },
     // 跳转URL
     redirectUrl() {
@@ -104,11 +104,11 @@ export default {
         signature: obj.signature,
         jsApiList: [
           "onMenuShareAppMessage",
-          "onMenuShareTimeline",
+          "onMenuShareTimeline"
           // "onMenuShareQQ",
           // "onMenuShareWeibo",
           // "onMenuShareQZone",
-          "hideMenuItems"
+          // "hideMenuItems"
           // "getNetworkType"
         ]
       };
@@ -133,18 +133,18 @@ export default {
         // wx.onMenuShareQZone(option);
 
         // 要隐藏的菜单项，只能隐藏“传播类”和“保护类”按钮，所有menu项见附录3
-        wx.hideMenuItems({
-          menuList: [
-            "menuItem:editTag",
-            "menuItem:delete",
-            "menuItem:copyUrl",
-            "menuItem:originPage",
-            "menuItem:readMode",
-            "menuItem:openWithQQBrowser",
-            "menuItem:openWithSafari",
-            "menuItem:share:email"
-          ]
-        });
+        // wx.hideMenuItems({
+        //   menuList: [
+        //     "menuItem:editTag",
+        //     "menuItem:delete",
+        //     "menuItem:copyUrl",
+        //     "menuItem:originPage",
+        //     "menuItem:readMode",
+        //     "menuItem:openWithQQBrowser",
+        //     "menuItem:openWithSafari",
+        //     "menuItem:share:email"
+        //   ]
+        // });
       });
     },
     // 获取微信用户信息（昵称，地区）
