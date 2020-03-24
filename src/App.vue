@@ -69,20 +69,20 @@ export default {
       // return window.location.href.split("#")[0].split("?")[0];
       let { origin, pathname } = window.location;
       return origin + pathname;
-    },
-    shouldInitShare() {
-      return this.sport.isLogin && this.shouldShare;
     }
+    // shouldInitShare() {
+    //   return this.sport.isLogin && this.shouldShare;
+    // }
   },
-  watch: {
-    shouldInitShare(val) {
-      if (!val) {
-        return;
-      }
-      this.title = `我刚刚参加了${this.sport.name}投票活动，你也来参与吧`;
-      this.initWxShare();
-    }
-  },
+  // watch: {
+  //   shouldInitShare(val) {
+  //     if (!val) {
+  //       return;
+  //     }
+  //     this.title = `我刚刚参加了${this.sport.name}投票活动，你也来参与吧`;
+  //     this.initWxShare();
+  //   }
+  // },
   methods: {
     ...mapMutations(["setStore"]),
     wxPermissionInit() {
@@ -94,7 +94,7 @@ export default {
       }).then(data => {
         this.wxReady(data);
         this.initWxShare();
-        this.shouldShare = true;
+        // this.shouldShare = true;
       });
     },
     wxReady(obj) {
@@ -121,7 +121,7 @@ export default {
       wx.ready(() => {
         let option = {
           title: this.title, // 分享标题
-          desc: this.title,
+          desc: `我刚刚参加了${this.sport.name}投票活动，你也来参与吧`,
           link: this.shareUrl,
           imgUrl: "https://www.cbpc.ltd/public/cdn/cbpm.jpg",
           type: "",
