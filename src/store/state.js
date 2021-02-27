@@ -24,8 +24,8 @@ const state = {
     timeRange: "2月17日至28日",
     loadWXInfo: true,
     startDate: "2020-03-25 08:00:00",
-    endDate: "2020-03-31 23:59:59"
-  }
+    endDate: "2020-05-31 23:59:59",
+  },
 };
 
 export default state;

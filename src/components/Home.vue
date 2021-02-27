@@ -247,13 +247,13 @@ export default {
       let { rows, ip } = await db.getCbpmVoteMain(this.openid);
       // console.log(rows)
       if (rows > 0) {
-        this.$router.push("/score");
+        // this.$router.push("/score");
         return;
       }
       this.ip = ip;
     },
     addInfo() {
-      this.$router.push("/score");
+      // this.$router.push("/score");
     }
   },
   created() {
