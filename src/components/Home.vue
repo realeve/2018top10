@@ -1,39 +1,45 @@
 <template>
-  <div style="background:#f2f3f8">
+  <div style="background: #f2f3f8">
     <x-header></x-header>
     <toast v-model="toast.show" :type="toast.type">{{ toast.text }}</toast>
     <div class="company_name">
       <p>请先选择您所属单位</p>
       <div class="weui-cells vux-no-group-title">
-        <selector title="所在单位" :options="companyList" v-model="company_name"></selector>
+        <selector
+          title="所在单位"
+          :options="companyList"
+          v-model="company_name"
+        ></selector>
       </div>
     </div>
     <div v-show="company_name.length">
-      <div class="vote" v-for="(item,i) in checkList" :key="item.id">
+      <div class="vote" v-for="(item, i) in checkList" :key="item.id">
         <div class="header">
-          <div v-if="item.img.length==0" class="empty-imgs" />
-          <img v-else-if="item.img.length==1" :src="item.img[0].img" />
+          <div v-if="item.img.length == 0" class="empty-imgs" />
+          <img v-else-if="item.img.length == 1" :src="item.img[0].img" />
           <swiper
             v-else
             loop
             auto
             inter
             :show-desc-mask="false"
-            :interval="1300+Math.random()*2000"
+            :interval="1300 + Math.random() * 2000"
             :list="item.img"
           />
           <p
             class="main-title"
             :style="{
-          bottom:item.img.length===1?'5px':'0px'
-        }"
-          >{{i | chinese}}、{{item.title}}</p>
+              bottom: item.img.length === 1 ? '5px' : '0px',
+            }"
+          >
+            {{ i | chinese }}、{{ item.title }}
+          </p>
         </div>
-        <p class="desc">{{item.content}}</p>
+        <p class="desc">{{ item.content }}</p>
 
         <div class="weui-cell switch">
           <span>投它一票</span>
-          <span>{{progress}}</span>
+          <span>{{ progress }}</span>
           <input
             type="checkbox"
             class="weui-switch"
@@ -46,21 +52,26 @@
         </div>
       </div>
 
-      <p style="margin-top:20px;" v-show="myChecked.length">我的选择</p>
+      <p style="margin-top: 20px" v-show="myChecked.length">我的选择</p>
       <div class="weui-cells weui-cells_checkbox">
-        <label class="weui-cell weui-check_label" v-for="(item,i) in myChecked" :key="item.id">
+        <label
+          class="weui-cell weui-check_label"
+          v-for="(item, i) in myChecked"
+          :key="item.id"
+        >
           <div class="weui-cell__bd">
-            <p>{{i+1}}.{{item.title}}</p>
+            <p>{{ i + 1 }}.{{ item.title }}</p>
           </div>
         </label>
       </div>
 
       <div class="submit">
         <x-button
-          :disabled="submitting || maxnum!=sport.maxTickets"
+          :disabled="submitting || maxnum != sport.maxTickets"
           @click.native="submit"
           type="primary"
-        >提交数据</x-button>
+          >提交数据</x-button
+        >
         <!-- <x-button
           @click.native="addInfo"
           type="default"
@@ -91,7 +102,7 @@ export default {
     XHeader,
     XFooter,
     Swiper,
-    Selector
+    Selector,
   },
   data() {
     return {
@@ -99,7 +110,7 @@ export default {
       toast: {
         show: false,
         text: "",
-        type: ""
+        type: "",
       },
       voteNum: [],
       checkList: _checkList, //util.randomArr(_checkList),
@@ -107,13 +118,13 @@ export default {
       ip: "",
       companyList,
       company_name: "",
-      submitting: false
+      submitting: false,
     };
   },
   computed: {
     ...mapState(["cdnUrl", "sport", "userInfo"]),
     maxnum() {
-      let count = this.valueList.filter(item => item);
+      let count = this.valueList.filter((item) => item);
       return count.length;
     },
     openid() {
@@ -141,9 +152,9 @@ export default {
       if (this.company_name == "") {
         return -1;
       }
-      let idx = companyList.findIndex(item => item == this.company_name);
+      let idx = companyList.findIndex((item) => item == this.company_name);
       return idx + 1;
-    }
+    },
   },
   filters: {
     chinese(i) {
@@ -162,9 +173,9 @@ export default {
         "十二",
         "十三",
         "十四",
-        "十五"
+        "十五",
       ][i];
-    }
+    },
   },
   methods: {
     showToast(settings) {
@@ -179,7 +190,7 @@ export default {
       if (this.maxnum > this.sport.maxTickets) {
         this.showToast({
           text: "请勿超过" + this.sport.maxTickets + "票",
-          type: "warn"
+          type: "warn",
         });
       }
     },
@@ -195,7 +206,7 @@ export default {
           arr.push(i);
         }
       });
-      let addStr = arr.map(item => this.getOriginIdx(item));
+      let addStr = arr.map((item) => this.getOriginIdx(item));
       // .sort((a, b) => a - b); // 不做排序
       let params = {
         nickname: this.userInfo.nickname,
@@ -207,12 +218,12 @@ export default {
         city: this.userInfo.city,
         ip: this.ip,
         vote_detail: addStr.join(","),
-        company_id: this.company_id
+        company_id: this.company_id,
       };
 
       let res = await db
         .addCbpmVoteMain(params)
-        .catch(e => ({ data: [{ affected_rows: -1 }] }));
+        .catch((e) => ({ data: [{ affected_rows: -1 }] }));
 
       let { affected_rows } = res.data[0];
 
@@ -220,7 +231,7 @@ export default {
         this.submitting = false;
         this.showToast({
           text: "数据提交失败",
-          type: "warn"
+          type: "warn",
         });
         return;
       } else if (affected_rows == 1) {
@@ -229,7 +240,7 @@ export default {
       }
       this.showToast({
         text: "提交成功",
-        type: "success"
+        type: "success",
       });
 
       setTimeout(() => {
@@ -245,7 +256,7 @@ export default {
       }
 
       let { rows, ip } = await db.getCbpmVoteMain(this.openid);
-      // console.log(rows)
+      console.log(rows);
       if (rows > 0) {
         // this.$router.push("/score");
         return;
@@ -254,13 +265,13 @@ export default {
     },
     addInfo() {
       // this.$router.push("/score");
-    }
+    },
   },
   created() {
     this.getStep();
 
     this.valueList = new Array(_checkList.length).fill(false);
-  }
+  },
 };
 </script>
 

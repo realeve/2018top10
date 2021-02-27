@@ -18,13 +18,12 @@ const state = {
   sport: {
     id: 1,
     isLogin: true,
-    name: '2019年中国印钞造币行业"十件大事"',
+    name: '2020年中国印钞造币行业"十件大事"',
     maxTickets: 10,
-    allTickets: 15,
     timeRange: "2月17日至28日",
     loadWXInfo: true,
-    startDate: "2020-03-25 08:00:00",
-    endDate: "2020-05-31 23:59:59",
+    startDate: "2021-02-25 08:00:00",
+    endDate: "2021-05-31 23:59:59",
   },
 };
 

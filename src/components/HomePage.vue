@@ -2,29 +2,19 @@
   <div class="wrapper">
     <div class="content">
       <p class="title">
-        中国印钞造币总公司2019年度
+        中国印钞造币总公司2020年度
         <br />“十件大事”评选活动
       </p>
-      <p
-        class="desc"
-      >回望2019年，不忘初心、逐梦前行的祖国和人民都收获满满、幸福满满。肩负为国造币神圣使命的中钞人在总公司董事会、党委经理部的领导下，围绕“转型发展”这一核心使命，凝心聚力、砥砺前行，取得了靓丽的业绩！</p>
-      <p
-        class="desc"
-      >为向大家全面展示2019年中国印钞造币行业的新发展、新成就、新气象，让大家更加了解中国印钞造币行业、支持中国印钞造币事业，今天小印请您当评委，邀您共同参与中国印钞造币行业2019年“十件大事”评选活动！请在12个选项中选出你认为的“十件大事”。</p>
-      <!-- <p
-        class="desc"
-      >2月底我们将组织印钞造币行业内部专家投票，并以专家投票结果作为十件大事确认事项。参与者选出的十件大事与最终结果完全一致即可参加抽奖活动，中奖名单奖将通过“中国印钞造币”微信公众号公布。</p>
-      <p class="desc" style="text-indent:0;">活动规则</p>
-      <p class="desc">（一）每个微信号参与者限投一次，一次限选10件候选大事，投票后填写详细联系方式（如填写信息不完整，视为自动放弃获奖资格）。</p>
-      <p class="desc">（二）为感谢大家的积极参与，本次活动将根据参与者投票的命中率进行抽奖（共设一、二、三等奖）：</p>
-      <p
-        class="desc"
-      >1、2月底我们将组织印钞造币行业内部专家投票，并以专家投票结果作为十件大事确认事项。参与者选出的十件大事与最终结果完全一致即可参加抽奖活动，由中国印钞造币总公司组织抽奖，从满足条件的参与者中抽取600名一、二、三等奖中奖者。</p>
-      <p class="desc">2、如与“十件大事”的最终评选结果完全重合的投票人数不足600名，则按评选命中率从高到低依次选足抽奖人员。</p>
-      <p class="desc">3、参与抽奖人员只与投票准确率有关，与投票先后无关。</p>-->
-      <!-- <div class="margin-top-20 time">活动时间：{{year}}年{{sport.timeRange}}</div> -->
+      <p class="desc">
+        回望2020年，不忘初心、逐梦前行的祖国和人民都收获满满、幸福满满。肩负为国造币神圣使命的中钞人在总公司董事会、党委经理部的领导下，围绕“转型发展”这一核心使命，凝心聚力、砥砺前行，取得了靓丽的业绩！
+      </p>
+      <p class="desc">
+        为向大家全面展示2020年中国印钞造币行业的新发展、新成就、新气象，让大家更加了解中国印钞造币行业、支持中国印钞造币事业，今天小印请您当评委，邀您共同参与中国印钞造币行业2020年“十件大事”评选活动！请在12个选项中选出你认为的“十件大事”。
+      </p>
       <div class="btn-wrapper margin-top-60">
-        <div class="weui-btn weui-btn_default" @click="jump('home')">开始投票</div>
+        <div class="weui-btn weui-btn_default" @click="jump('home')">
+          开始投票
+        </div>
       </div>
     </div>
     <toast v-model="toast.show">{{ toast.msg }}</toast>
@@ -46,15 +36,15 @@ export default {
   components: {
     XButton,
     Toast,
-    XFooter
+    XFooter,
   },
   data() {
     return {
       toast: {
         show: false,
-        msg: ""
+        msg: "",
       },
-      isVoted: false
+      isVoted: false,
     };
   },
   computed: {
@@ -69,11 +59,11 @@ export default {
       },
       set(val) {
         this.$store.commit("setSport", val);
-      }
+      },
     },
     isSportEnd() {
       return moment().format("YYYY-MM-DD HH:mm:ss") > this.sport.endDate;
-    }
+    },
   },
   watch: {
     "userInfo.openid"(val) {
@@ -81,7 +71,7 @@ export default {
         return;
       }
       this.getStep();
-    }
+    },
   },
   methods: {
     jump(router) {
@@ -104,13 +94,13 @@ export default {
         this.isVoted = true;
         return;
       }
-    }
+    },
   },
   mounted() {
     particlesJS("home", particlesSetting);
     document.title = this.sport.name;
     this.getStep();
-  }
+  },
 };
 </script>
 <style lang="less" scoped>
