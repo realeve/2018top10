@@ -70,6 +70,7 @@
           :disabled="submitting || maxnum != sport.maxTickets"
           @click.native="submit"
           type="primary"
+          v-show="isSportStart"
           >提交数据</x-button
         >
         <!-- <x-button
@@ -144,6 +145,9 @@ export default {
         }
       });
       return arr;
+    },
+    isSportStart() {
+      return moment().format("YYYY-MM-DD HH:mm:ss") > this.sport.startDate;
     },
     isSportEnd() {
       return moment().format("YYYY-MM-DD HH:mm:ss") > this.sport.endDate;

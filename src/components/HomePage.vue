@@ -6,13 +6,18 @@
         <br />“十件大事”评选活动
       </p>
       <p class="desc">
-        回望2020年，不忘初心、逐梦前行的祖国和人民都收获满满、幸福满满。肩负为国造币神圣使命的中钞人在总公司董事会、党委经理部的领导下，围绕“转型发展”这一核心使命，凝心聚力、砥砺前行，取得了靓丽的业绩！
+        回望2020年，肩负为国造币神圣使命的中钞人在总公司领导下，围绕“转型发展”这一核心使命，凝心聚力、砥砺前行！
       </p>
       <p class="desc">
-        为向大家全面展示2020年中国印钞造币行业的新发展、新成就、新气象，让大家更加了解中国印钞造币行业、支持中国印钞造币事业，今天小印请您当评委，邀您共同参与中国印钞造币行业2020年“十件大事”评选活动！请在12个选项中选出你认为的“十件大事”。
+        为向大家展示2020年中国印钞造币行业的新发展、新成就、新气象，支持中国印钞造币事业，今天小印邀您共同参与中国印钞造币行业2020年“十件大事”评选活动！请选出您认为的“十件大事”。
       </p>
+      <p class="desc">活动时间：3月3日-7日</p>
       <div class="btn-wrapper margin-top-60">
-        <div class="weui-btn weui-btn_default" @click="jump('home')">
+        <div
+          class="weui-btn weui-btn_default"
+          @click="jump('home')"
+          v-show="isSportStart"
+        >
           开始投票
         </div>
       </div>
@@ -60,6 +65,9 @@ export default {
       set(val) {
         this.$store.commit("setSport", val);
       },
+    },
+    isSportStart() {
+      return moment().format("YYYY-MM-DD HH:mm:ss") > this.sport.startDate;
     },
     isSportEnd() {
       return moment().format("YYYY-MM-DD HH:mm:ss") > this.sport.endDate;

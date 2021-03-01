@@ -22,8 +22,8 @@ const state = {
     maxTickets: 10,
     timeRange: "2月17日至28日",
     loadWXInfo: true,
-    startDate: "2021-02-25 08:00:00",
-    endDate: "2021-05-31 23:59:59",
+    startDate: "2021-03-03 00:00:00",
+    endDate: "2021-03-07 23:59:59",
   },
 };
 
