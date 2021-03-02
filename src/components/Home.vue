@@ -44,7 +44,7 @@
             type="checkbox"
             class="weui-switch"
             v-model="valueList[i]"
-            @on-change="checkMaxVotes(i)"
+            @on-change="checkMaxVotes"
           />
         </div>
         <div class="split">
@@ -160,6 +160,15 @@ export default {
       return idx + 1;
     },
   },
+  watch: {
+    valueList(val) {
+      this.checkMaxVotes();
+      // let nums = val.filter(item=>item).length;
+      // if(nums>this.sport.maxTickets){
+
+      // }
+    },
+  },
   filters: {
     chinese(i) {
       return [
@@ -190,7 +199,7 @@ export default {
         this.toast.show = false;
       }, 1500);
     },
-    checkMaxVotes(i) {
+    checkMaxVotes() {
       if (this.maxnum > this.sport.maxTickets) {
         this.showToast({
           text: "请勿超过" + this.sport.maxTickets + "票",
@@ -260,9 +269,9 @@ export default {
       }
 
       let { rows, ip } = await db.getCbpmVoteMain(this.openid);
-      console.log(rows);
+
       if (rows > 0) {
-        // this.$router.push("/score");
+        this.$router.push("/score");
         return;
       }
       this.ip = ip;

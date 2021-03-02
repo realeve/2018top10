@@ -19,14 +19,15 @@ import { axios } from "./js/axios";
 export default {
   name: "app",
   components: {
-    Loading
+    Loading,
   },
   data() {
     return {
       code: "",
       apiId: "wx762c9153df774440",
+      // apiId: "wxd11a56770d3ae534", 中钞
       title: "",
-      shouldShare: false
+      shouldShare: false,
     };
   },
   computed: {
@@ -40,7 +41,7 @@ export default {
       },
       set(val) {
         this.$store.commit("updateLoadingStatus", val);
-      }
+      },
     },
     userInfo: {
       get() {
@@ -48,7 +49,7 @@ export default {
       },
       set(val) {
         this.$store.commit("setUserinfo", val);
-      }
+      },
     },
     // 签名用URL
     url() {
@@ -70,7 +71,7 @@ export default {
     },
     shouldInitShare() {
       return this.sport.isLogin && this.shouldShare;
-    }
+    },
   },
   watch: {
     shouldInitShare(val) {
@@ -79,7 +80,7 @@ export default {
       }
       this.title = `我刚刚参加了${this.sport.name}投票活动，你也来参与吧`;
       this.initWxShare();
-    }
+    },
   },
   methods: {
     ...mapMutations(["setStore"]),
@@ -87,9 +88,9 @@ export default {
       return axios({
         params: {
           s: "/weixin/signature",
-          url: this.url
-        }
-      }).then(data => {
+          url: this.url,
+        },
+      }).then((data) => {
         this.wxReady(data);
         this.initWxShare();
         this.shouldShare = true;
@@ -108,9 +109,9 @@ export default {
           // "onMenuShareQQ",
           // "onMenuShareWeibo",
           // "onMenuShareQZone",
-          "hideMenuItems"
+          "hideMenuItems",
           // "getNetworkType"
-        ]
+        ],
       };
       wx.config(config);
     },
@@ -123,8 +124,8 @@ export default {
           imgUrl: "https://www.cbpc.ltd/public/cdn/cbpm.jpg",
           type: "",
           dataUrl: "",
-          success: function() {},
-          cancel: function() {}
+          success: function () {},
+          cancel: function () {},
         };
         wx.onMenuShareAppMessage(option);
         wx.onMenuShareTimeline(option);
@@ -142,8 +143,8 @@ export default {
             "menuItem:readMode",
             "menuItem:openWithQQBrowser",
             "menuItem:openWithSafari",
-            "menuItem:share:email"
-          ]
+            "menuItem:share:email",
+          ],
         });
       });
     },
@@ -178,9 +179,9 @@ export default {
       axios({
         params: {
           s: "/weixin/user_info",
-          code: this.code
-        }
-      }).then(data => {
+          code: this.code,
+        },
+      }).then((data) => {
         this.userInfo = data;
         /*
           20180831:
@@ -227,11 +228,11 @@ export default {
           privilege: [],
           timestamp: 1535994566,
           ip: "172.31.85.39",
-          token: "6487423c151badc681e7793bbd335e9d99dcec18"
+          token: "6487423c151badc681e7793bbd335e9d99dcec18",
         };
         localStorage.setItem("wx_userinfo", JSON.stringify(this.userInfo));
       }, 3000);
-    }
+    },
   },
   created() {
     this.title = this.sport.name + "微信投票活动";
@@ -251,7 +252,7 @@ export default {
     // 正式环境微信载入
     this.wxInit();
     // this.wxPermissionInit();
-  }
+  },
 };
 </script>
 
