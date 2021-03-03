@@ -133,3 +133,15 @@ export const getCbpcUser2020 = () =>
   axios({
     url: "/399/cb7717a608.json",
   });
+
+/**
+ *   @database: { 微信开发 }
+ *   @desc:     { 当前是成钞员工 }
+ */
+export const getCbpmVoteMain2 = (openid) =>
+  axios({
+    url: "/400/d5847b5bce.json",
+    params: {
+      openid,
+    },
+  }).then((res) => res.rows > 0);

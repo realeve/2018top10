@@ -27,16 +27,18 @@
       ></cell>
     </group>
 
-    <p class="info">成钞公司各部门票数汇总</p>
-    <p>(根据企业以往答题活动中预留的微信信息为准)</p>
-    <group style="margin-bottom: 20px">
-      <cell
-        v-for="(item, i) in cbpc"
-        :title="i + 1 + '.' + item.dept_name"
-        :value="+item.value + ' 票'"
-        :key="i"
-      ></cell>
-    </group>
+    <div v-show="cbpc.length > 0">
+      <p class="info">成钞公司各部门票数汇总</p>
+      <p>(根据企业以往答题活动中预留的微信信息为准)</p>
+      <group style="margin-bottom: 20px">
+        <cell
+          v-for="(item, i) in cbpc"
+          :title="i + 1 + '.' + item.dept_name"
+          :value="+item.value + ' 票'"
+          :key="i"
+        ></cell>
+      </group>
+    </div>
     <div style="margin: 0 20px 20px 20px">
       <x-button @click.native="init" type="primary">刷新数据</x-button>
     </div>
@@ -105,6 +107,12 @@ export default {
       let method = this.isAdmin ? "getCbpmVoteList" : "getCbpmVoteListByOpenid";
       let { data } = await db[method](this.openid);
       this.voteNum = data;
+
+      const isCbpc = await db.getCbpmVoteMain2(this.openid);
+      if (!isCbpc) {
+        return;
+      }
+
       db.getCbpcUser2020().then((res) => {
         this.cbpc = res.data;
       });
@@ -127,6 +135,7 @@ export default {
     },
     init() {
       this.getVoteNums();
+      console.log(this.userInfo);
       if (this.isAdmin) {
         this.getCountInfo();
         this.getPrizeInfo();
