@@ -1,14 +1,14 @@
-import { axios } from './axios';
+import { axios } from "./axios";
 /**
  *   @database: { 微信开发 }
  *   @desc:     { 用户是否提交投票 }
  */
 export const getCbpmVoteMain = (openid) =>
   axios({
-    url: '/143/b91cabf25d.json',
+    url: "/143/b91cabf25d.json",
     params: {
-      openid
-    }
+      openid,
+    },
   });
 
 /**
@@ -18,8 +18,8 @@ export const getCbpmVoteMain = (openid) =>
 */
 export const addCbpmVoteMain = (params) =>
   axios({
-    url: '/144/b8fd30dbf7.json',
-    params
+    url: "/144/b8fd30dbf7.json",
+    params,
   });
 
 /**
@@ -28,10 +28,10 @@ export const addCbpmVoteMain = (params) =>
  */
 export const setCbpmVoteList = (values) =>
   axios({
-    url: '/145/c1428e33a7.json',
+    url: "/145/c1428e33a7.json",
     params: {
-      values
-    }
+      values,
+    },
   });
 
 /**
@@ -40,10 +40,10 @@ export const setCbpmVoteList = (values) =>
  */
 export const getCbpmVoteUserAddress = (openid) =>
   axios({
-    url: '/146/168ea395bf.json',
+    url: "/146/168ea395bf.json",
     params: {
-      openid
-    }
+      openid,
+    },
   });
 
 /**
@@ -53,19 +53,20 @@ export const getCbpmVoteUserAddress = (openid) =>
 */
 export const addCbpmVoteUserAddress = (params) =>
   axios({
-    url: '/147/8b8ca5e95a.json',
-    params
+    url: "/147/8b8ca5e95a.json",
+    params,
   });
-  
+
 /**
 *   @database: { 微信开发 }
 *   @desc:     { 更新地址信息 } 
     const { user, mobile, prov, city, area, detail, openid } = params;
 */
-export const setCbpmVoteUserAddress = params => axios({
-  url: '/154/be12969005.json',
-  params,
-});
+export const setCbpmVoteUserAddress = (params) =>
+  axios({
+    url: "/154/be12969005.json",
+    params,
+  });
 
 /**
  *   @database: { 微信开发 }
@@ -73,7 +74,7 @@ export const setCbpmVoteUserAddress = params => axios({
  */
 export const getVoteUserAddress = () =>
   axios({
-    url: '/148/3be6dd9ef8.json'
+    url: "/148/3be6dd9ef8.json",
   });
 
 /**
@@ -82,7 +83,7 @@ export const getVoteUserAddress = () =>
  */
 export const getCbpmVoteList = () =>
   axios({
-    url: '/149/7477322ba3.json'
+    url: "/149/7477322ba3.json",
   });
 
 /**
@@ -91,10 +92,10 @@ export const getCbpmVoteList = () =>
  */
 export const getCbpmVoteListByOpenid = (openid) =>
   axios({
-    url: '/150/55c0d3997f.json',
+    url: "/150/55c0d3997f.json",
     params: {
-      openid
-    }
+      openid,
+    },
   });
 
 /**
@@ -103,7 +104,7 @@ export const getCbpmVoteListByOpenid = (openid) =>
  */
 export const getCbpmLuckyUserList = () =>
   axios({
-    url: '/151/1e2fadce6c.json'
+    url: "/151/1e2fadce6c.json",
   });
 
 /**
@@ -112,7 +113,7 @@ export const getCbpmLuckyUserList = () =>
  */
 export const getCbpmVoteMainByProv = () =>
   axios({
-    url: '/152/175c426091.json'
+    url: "/152/175c426091.json",
   });
 
 /**
@@ -121,5 +122,14 @@ export const getCbpmVoteMainByProv = () =>
  */
 export const getCbpmVoteMainByCompany = () =>
   axios({
-    url: '/153/007d24c4e6.json'
+    url: "/153/007d24c4e6.json",
+  });
+
+/**
+ *   @database: { 微信开发 }
+ *   @desc:     { 行业十件大事投票成钞公司参与情况 }
+ */
+export const getCbpcUser2020 = () =>
+  axios({
+    url: "/399/cb7717a608.json",
   });
